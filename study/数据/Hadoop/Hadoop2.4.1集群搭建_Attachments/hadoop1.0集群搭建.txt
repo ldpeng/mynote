@@ -1,0 +1,127 @@
+1.启动Linux，选择I copy it（选择move是mac地址不变，选择copy，会新产生一mac地址）
+
+2.配置Linux环境
+	2.1执行ifconfig命令发现，可用的网卡是eth1  HWaddr <新的MAC地址>
+
+	2.2将eth1的新的mac地址复制下来，替换原来eth0里旧的的mac地址
+	vim /etc/sysconfig/network-scripts/ifcfg-eth0
+		HWADDR="<旧的mac地址>"  -->  "<新的mac地址>"
+	
+	2.3 find /etc -name "*net.rules" 
+		vim /etc/udev/rules.d/70-persistent-net.rule
+		把原来的eth0的那行删掉，再把eth1这个字符串改成eth0
+
+	2.4修改主机名
+	
+	2.5修改主机名和IP的映射关系
+	
+	2.6关闭防火墙
+	
+	2.7关闭linux的图形界面，以命令行的方式启动
+		vim /etc/inittab
+		id:3:initdefault:
+	2.8 reboot
+
+3.安装jdk(详情看安装伪分布式笔记)
+	将安装好的jdk通过scp的方式拷贝到其他节点
+	scp -r /usr/java/ hadoop02:/usr/
+	scp -r /usr/java/ hadoop03:/usr/
+	
+4.安装配置hadoop集群
+	4.1上传hadoop压缩包
+	
+	4.2解压
+	
+	4.3配置hadoop（需要修改6个配置文件）
+		第一个：hadoop-env.sh 
+			export JAVA_HOME=/usr/local/jdk1.6.0_45
+		
+		第二个：core-site.xml
+			<!-- 指定HDFS的namenode的通信地址 -->
+			<property>
+					<name>fs.default.name</name>
+					<value>hdfs://hadoop01:9000</value>
+			</property>
+			<!-- 指定hadoop运行时产生文件的存放目录 -->
+			<property>
+					<name>hadoop.tmp.dir</name>
+					<value>/cloud/hadoop-1.1.2/tmp</value>
+			</property>
+		
+		第三个：hdfs-site.xml
+			<!-- 配置HDFS副本的数量 -->
+			<property>
+					<name>dfs.replication</name>
+					<value>3</value>
+			</property>
+		
+		第四个：mapred-site.xml
+			<!-- 指定jobtracker地址 -->
+			<property>
+					<name>mapred.job.tracker</name>
+					<value>hadoop01:9001</value>
+			</property>
+		
+		第五个：masters(指定secondarynamenode地址)
+			hadoop01
+			
+		第六个：slaves
+			hadoop02
+			hadoop03
+		
+	4.4将配置好的hadoop拷贝到其他节点
+		scp -r /cloud/ hadoop02:/
+		scp -r /cloud/ hadoop03:/
+
+	4.5配置ssh免登
+		是hadoop01到hadoop02、hadoop03的免登
+		ssh-keygen -t rsa（在hadoop01上生成即可）
+		
+		ssh-copy-id -i hadoop01
+		ssh-copy-id -i hadoop02
+		ssh-copy-id -i hadoop03
+
+	4.6拷贝/etc/profile到其他节点
+		scp /etc/profile hadoop02:/etc/
+		scp /etc/profile hadoop03:/etc/
+		
+	4.6仅在hadoop01上格式化hadoop
+		hadoop namenode -format
+		
+5.动态添加一台节点
+	hadoop04 192.168.1.204
+	5.1通过克隆方式添加一台Linux
+	5.2修改主机名
+	5.3使用root用户登录，右键点击右上角网络，选择Edit connections，修改Auto eth1，设置为manual方式，添加IP，NETMASK，GAYEWAY,再点apply
+	5.4重启机器：reboot
+	5.5分别启动datanode和tasktracker
+		hadoop-daemon.sh start datanode
+		hadoop-daemon.sh start tasktracker
+	5.6在hadoop01上即namenode所在节点上运行命令刷新
+		hadoop dfsadmin -refreshNodes
+		
+6.hadoop集群管理相关命令
+	hadoop安全模式：Safe mode is ON（可以读取文件，但是不可以向HDFS写入文件）
+	hadoop dfsadmin -safemode enter(进入安装器模式) / leave(离开安全模式) / get(获取当前状态) / wait(竟然等待状态)
+	hadoop mrsadmin -safemode enter / leave / get / wait 
+
+7.将namenode，jobtracker和secondarynamenode分开部署
+	主机名		运行的进程
+	hadoop01	namenode
+	hadoop02	jobtracker、secondarynamenode
+	hadoop03	datanode、tasktracker
+	hadoop04	datanode、tasktracker
+
+	在hadoop01上修改masters，指定secondarynamenode，修改成hadoop02
+	再修改slaves文件，hadoop03、hadoop04
+	
+	hadoop02上，修改mapred-site.xml，将mapred.job.tracker的值改成hadoop02:9001
+	再修改slaves文件，hadoop03、hadoop04
+	设置hadoop02到hadoop03、hadoop04的免登陆
+	ssh-keygen -t rsa
+	ssh-copy-id -i hadoop03
+	ssh-copy-id -i hadoop04
+	
+	在hadoop03上，修改mapred-site.xml，将mapred.job.tracker的值改成hadoop02:9001
+	
+	在hadoop04上，修改mapred-site.xml，将mapred.job.tracker的值改成hadoop02:9001
