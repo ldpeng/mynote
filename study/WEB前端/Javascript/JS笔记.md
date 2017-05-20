@@ -98,7 +98,7 @@ txt.oninput = function() {
 }
 ```
 
-- ie 678 不支持oninput，支持的是：onpropertychange事件 
+- ie 678 不支持oninput，支持的是：onpropertychange事件
 
 **综合兼容性写法：txt.oninput =  txt.onpropertychange =  function(){}**
 
@@ -120,7 +120,7 @@ txt.oninput = function() {
 # Date对象常用的方法
 - getDate() 获取日 1-31       
 - getDay() 获取星期 0-6      
-- getMonth()    获取月 0-11 
+- getMonth()    获取月 0-11
 - getFullYear() 获取完整年份（浏览器都支持）
 - getHours()   获取小时 0-23
 - getMinutes()  获取分钟 0-59
@@ -128,7 +128,7 @@ txt.oninput = function() {
 - getMilliseconds() 获取毫秒1s = 1000ms
 - getTime() 返回累计毫秒数(从1970/1/1午夜)  时间戳
 
-# offset 家族 
+# offset 家族
 
 offset是偏移的意思，这个家族主要用来检测盒子的大小和位置。
 
@@ -161,7 +161,7 @@ offsetWidth =  width + border + padding
 - clientWidth： width + padding
 - scrollWidth:  width + padding  不包含边框   **大小是内容的大小**    
 
-![image](http://i4.buimg.com/588926/7b3774fe6358cd9d.png)
+![image](JS笔记附件：offsetHeight、clientHeight和scrollHeight区别.png)
 
 ## 检测屏幕宽度(可视区域)
 - ie9+及其以上的版本:   window.innerWidth            
@@ -266,7 +266,7 @@ var targetId = event.target ? event.target.id : event.srcElement.id;
 ### 判断用户是否选择文字
 
 - IE9以下支持：document.selection 　　
-- IE9、Firefox、Safari、Chrome和Opera支持：window.getSelection() 
+- IE9、Firefox、Safari、Chrome和Opera支持：window.getSelection()
 
 #### 清除选中的内容
 
@@ -276,7 +276,7 @@ window.getSelection ? window.getSelection().removeAllRanges() : document.selecti
 
 # 获得css样式属性值
 
-- ie专属    div.currentStyle.left 
+- ie专属    div.currentStyle.left
 - w3c   window.getComputedStyle(元素,伪元素)
     - 一般情况下没有伪元素，我们用 null 来替代。
 
@@ -301,7 +301,7 @@ console.log(/\d/.test(567));
 
 ## 正则表达式声明
 
-1. 通过构造函数定义: var 变量名= new RegExp(/表达式/); 
+1. 通过构造函数定义: var 变量名= new RegExp(/表达式/);
 2. 通过直接量定义（较为常用）: var 变量名= /表达式/;
 
 ## 预定义类                                                       
@@ -309,7 +309,7 @@ console.log(/\d/.test(567));
 -  .    [^\n\r] 除了换行和回车之外的任意字符
 - \d    [0-9]   数字字符
 - \D    [^0-9]  非数字字符
-- \s    [ \t\n\x0B\f\r] 空白字符 
+- \s    [ \t\n\x0B\f\r] 空白字符
 - \S    [^ \t\n\x0B\f\r]    非空白字符
 - \w    [a-zA-Z_0-9]    单词字符
 - \W    [^a-zA-Z_0-9]   非单词字符  
@@ -343,7 +343,7 @@ function trim(str) {
 
 div. style.left只能得到行内样式的属性值。而工作中，最为常用的是内嵌式和外链式的写法。
 
-- ie 专属：div.currentStyle.left 
+- ie 专属：div.currentStyle.left
 - w3c：window.getComputedStyle(元素,伪元素)。一般情况下没有伪元素，用null来替代。
 
 兼容性的写法：
