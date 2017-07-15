@@ -64,7 +64,7 @@
 - arguments对象的长度是由实参个数而不是形参个数决定的
 - 这个单词只在函数 内使用，而且是正在执行的函数。
 
-```
+```javascript
 // 尽量要求形参和实参相互匹配
 function fn(a,b) {
     //  console.log(fn.length); 返回的是 函数的 形参的个数
@@ -85,7 +85,7 @@ arguments.callee 返回正被执行的Function对象。**在使用函数递归�
 # 检测用户表单输入事件
  - oninput 检测表单输入事件，光标进入是不触发事件的，当用户输入了内容的时候，才会触发事件。
 
-```
+```javascript
 txt.oninput = function() {
     //  alert(11);
     if(txt.value == "") // 如果为空就显示
@@ -134,7 +134,7 @@ offset是偏移的意思，这个家族主要用来检测盒子的大小和位�
 
 ## offsetWidth和offsetHeight
 
-```
+```javascript
 offsetWidth =  width + border + padding  
 ```
 
@@ -172,7 +172,7 @@ offsetWidth =  width + border + padding
 
 ## 滚动事件
 
-```
+```javascript
 window.onscroll = function() { 语句 }
 ```
 
@@ -189,7 +189,7 @@ scrollTop被卷去的头部,它就是当你滑动滚轮浏览网页的时候网�
 
 兼容写法：  
 
-```
+```javascript
 var scrolltop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;  
 ```
 
@@ -223,8 +223,14 @@ window.scrollTo 方法可把内容滚动到指定的坐标。
 
 ie 678 不支持pageX和pageY但是我们只能采取另外的方式获取：
 
-```
+```javascript
 pageY = clientY + document.documentElement.scrollTop  
+```
+
+## 取消事件默认行为
+
+```javascript
+event.preventDefault()
 ```
 
 ## 事件冒泡
@@ -245,7 +251,7 @@ pageY = clientY + document.documentElement.scrollTop
 
 兼容的写法：
 
-```
+```javascript
 if(event && event.stopPropagation) {
     event.stopPropagation();  //  w3c 标准
 } else {
@@ -259,7 +265,7 @@ if(event && event.stopPropagation) {
 - ie 678    event.srcElement.id      
 
 兼容性写法：  
-```
+```javascript
 var targetId = event.target ? event.target.id : event.srcElement.id;
 ```
 
@@ -270,7 +276,7 @@ var targetId = event.target ? event.target.id : event.srcElement.id;
 
 #### 清除选中的内容
 
-```
+```javascript
 window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
 ```
 
@@ -281,7 +287,7 @@ window.getSelection ? window.getSelection().removeAllRanges() : document.selecti
     - 一般情况下没有伪元素，我们用 null 来替代。
 
 兼容性的写法：  
-```
+```javascript
 function getStyle(obj,attr) {
     if(obj.currentStyle) {
         return  obj.currentStyle[attr];
@@ -332,7 +338,7 @@ console.log(/\d/.test(567));
 
 ## 封装自己的trim函数
 
-```
+```javascript
 function trim(str) {
     //起始就去掉第一个和最后一个空白字符串
     str.replace(/^\s+|\s+$/g,"");
@@ -347,7 +353,8 @@ div. style.left只能得到行内样式的属性值。而工作中，最为常�
 - w3c：window.getComputedStyle(元素,伪元素)。一般情况下没有伪元素，用null来替代。
 
 兼容性的写法：
-```
+
+```javascript
 function getStyle(obj,attr) {
     if(obj.currentStyle) {
         return  obj.currentStyle[attr];
