@@ -163,7 +163,7 @@ console.log(liElement.dataset);
 
 ```
 
-- 注意如果自定义属性中间有**-**，则将属性名字中间的横线去掉改成驼峰命名
+- 注意如果自定义属性中间有-，则将属性名字中间的横线去掉改成驼峰命名
 - 如data-product-id="10" 获取则使用xxx.dataset['productId']
 
 # 离线 & 存储
@@ -340,9 +340,9 @@ target.addEventListener('drop', function(e) {
             target.appendChild(img);
         }
     }
-    
+
     this.classList.remove('actived');
-  
+
     e.preventDefault();
     e.stopPropagation();
 });
@@ -370,7 +370,7 @@ window.addEventListener('offline',function(){
 //兼容处理
 if(navigator.geolocation){
     //如果支持，获取用户地理信息
-    
+
     //successCallback 当获取用户位置成功的回调函数
     //errorCallback 当获取用户位置失败的回调函数
     navigator.geolocation.getCurrentPosition(successCallback,errorCallback);
