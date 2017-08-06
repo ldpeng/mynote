@@ -163,7 +163,7 @@ console.log(liElement.dataset);
 
 ```
 
-- 注意如果自定义属性中间有-，则将属性名字中间的横线去掉改成驼峰命名
+- 注意如果自定义属性中间有中划线（-），则将属性名字中间的横线去掉改成驼峰命名
 - 如data-product-id="10" 获取则使用xxx.dataset['productId']
 
 # 离线 & 存储
@@ -346,6 +346,27 @@ target.addEventListener('drop', function(e) {
     e.preventDefault();
     e.stopPropagation();
 });
+```
+
+# 过度结束事件
+
+- 默认的方法名为transitionEnd
+- 由于浏览器兼容性问题可能需要添加前缀
+  + webkitTransitionEnd
+  + mozTransitionEnd
+  + msTransitionEnd
+  + oTransitionEnd
+
+```javascript
+document.querySelector("div").addEventListener('transitionEnd',function () {
+  console.log('过渡结束了');
+})
+
+// 过渡结束事件
+document.querySelector("div").addEventListener('webkitTransitionEnd',function () {
+  console.log('过渡结束了_添加了浏览器前缀的方法');
+  this.style.borderRadius ='20px';
+})
 ```
 
 # 网络环境判断
