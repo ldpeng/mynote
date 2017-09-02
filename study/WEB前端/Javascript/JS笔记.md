@@ -363,3 +363,14 @@ function getStyle(obj,attr) {
     }
 }
 ```
+
+# Json与字符串转换
+
+## json转字符串
+
+- JSON.stringify(obj)将JSON转为字符串
+
+## 字符串转json
+
+- 通过eval() 函数可以将JSON字符串转化为对象。
+- JSON.parse(string)将字符串转为JSON对象；
