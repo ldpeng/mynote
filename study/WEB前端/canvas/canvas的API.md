@@ -506,7 +506,7 @@ ctx.quadraticCurveTo(20,100,200,20);
 ctx.stroke();
 ```
 
-![二次贝塞尔曲线](canvas的API附件\二次贝塞尔曲线.png)
+![二次贝塞尔曲线](canvas的API附件/二次贝塞尔曲线.png)
 
 ## 绘制一条三次贝塞尔曲线
 
@@ -526,7 +526,7 @@ ctx.bezierCurveTo(500, 200, 600, 600, 700, 300);
 ctx.stroke();
 ```
 
-![复杂贝塞尔曲线](canvas的API附件\复杂贝塞尔曲线.png)
+![复杂贝塞尔曲线](canvas的API附件/复杂贝塞尔曲线.png)
 
 # 创建两条切线的弧
 
@@ -549,7 +549,7 @@ ctx.lineTo(240, 300);
 ctx.stroke();
 ```
 
-![两条切线的弧](canvas的API附件\两条切线的弧.png)
+![两条切线的弧](canvas的API附件/两条切线的弧.png)
 
 # 判断点是否在路径中
 
