@@ -374,3 +374,51 @@ function getStyle(obj,attr) {
 
 - 通过eval() 函数可以将JSON字符串转化为对象。
 - JSON.parse(string)将字符串转为JSON对象；
+
+# 值传递和引用传递
+
+- 在调用函数的时候，传参的过程其实就是用实参给形参赋值的过程
+- 当参数为值类型的时候，函数内和函数外的两个变量完全不同，仅仅只是存的值一样而已，修改时互不影响
+- 当参数为引用类型的时候，函数内和函数外的两个变量不同，但是共同指向同一个对象，在函数内修改对象数据时会影响外部
+
+# delete关键字
+
+- 删除对象的属性
+- 删除未使用var声明的变量
+- 返回值为boolean 表示是否删除成功
+
+注意：
+
+- 删除的属性如果不存在，返回true
+- 删除的如果是原型中的属性，返回true 但是删除不成功
+
+# 上下文调用的语法
+
+- 函数名.apply(对象, [参数]);
+- 函数名.call(对象, 参数);
+
+- 在使用apply和call的时候，默认的this都会失效，this的值由apply和call的第一个参数决定
+- 如果第一个参数不传, 或传入 null. undefiend 等, 那么相当于 this 默认为 window
+- 如果是函数调用foo(), 那么有点像foo.apply( window ).
+- 如果是方法调用o.method(), 那么有点像o.method.apply( o ).
+- 如果第一个参数传入的是基本类型, 那么this就是基本类型对应的包装类型的引用
+	+ number -> Number
+	+ boolean -> Boolean
+	+ string -> String
+
+## 借用构造函数继承
+
+```JavaScript
+function Person ( name, age, gender ) {
+    this.name = name;
+    this.age = age;
+    this.gender = gender;
+}
+
+// 需要提供一个 Student 的构造函数创建学生对象
+// 学生也应该有 name, age, gender, 同时还需要有 course 课程
+function Student ( name, age, gender, course ) {
+    Person.call( this, name, age, gender );
+    this.course = course;
+}
+```
