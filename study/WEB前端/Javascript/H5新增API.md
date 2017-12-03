@@ -427,6 +427,46 @@ html5新增了一个DOMContentLoaded事件，兼容IE9。
 </body>
 ```
 
+# 异步文件上传
+
+使用`FormData`将input[type=file]控件所选的文件设置进去
+
+```JavaScript
+$('#btn_upload').on('click', function () {
+    // 直接写ajax就行了，获取表单文件元素
+
+    // FormData 专门用来构建表单数据的
+    var formData = new FormData();
+
+    // append 表示添加一个 要发送的 字段名：值
+    // 文件必须通过 获取文件元素，通过文件元素的 files[0]  获取该文件的二进制数据
+    formData.append('pic', document.querySelector('#pic_file').files[0]);
+
+    // 1. 新建一个xhr对象
+    var xhr = new XMLHttpRequest();
+
+    // 2. 配置请求
+    xhr.open('post', '/article/upload');
+
+    // 3. 设置成功之后的回调函数
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        var data = JSON.parse(xhr.responseText);
+
+        if (data && data.code == 1) {
+          var src = data.msg;
+
+          // 上传完成后的逻辑
+        }
+      }
+    };
+
+    // 4. 发送,发送文件数据
+    xhr.send(formData);
+
+  });
+```
+
 # 网络环境判断
 
 ```javascript
