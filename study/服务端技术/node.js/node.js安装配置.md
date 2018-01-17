@@ -9,9 +9,9 @@
 3. 在安装目录下创建setting.txt文件，内容如下：
 
 ```txt
-root: C:\dev\nvm 
-path: C:\dev\nodejs 
-arch: 64 
+root: C:\dev\nvm
+path: C:\dev\nodejs
+arch: 64
 proxy: none
 ```
 
@@ -71,13 +71,25 @@ nvm install 版本号 32
 nvm uninstall 版本号
 ```
 
+- 查看远程服务器版本（官方node version list）
+
+```
+nvm ls-remote
+```
+
+- 安装最新稳定版
+
+```
+nvm install --lts
+```
+
 ## npm配置
 
 - npm root -g
 
 查看当前全部包安装路径
 
-- 修改全局包安装路径
+- 修改全局包安装路径（Mac中配置无效）
 
 1. npm config set prefix "C:\dev\nvm\npm"
 2. 添加path环境变量
