@@ -1344,8 +1344,6 @@ public WebMvcConfigurerAdapter webMvcConfigurerAdapter(){
 - message：异常消息
 - errors：JSR303数据校验的错误都在这里
 
-
-
 #### 如何定制错误的json数据
 
 1. 自定义异常处理&返回定制json数据
