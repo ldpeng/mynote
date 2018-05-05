@@ -13,7 +13,7 @@ redis是一种key-value的nosql数据库
 
 # 存储字符串string
 
-字符串类型在Redis中是二进制存储的，这意味着该可以接受任何格式的数据，如JPEG图像数据或Json对象描述信息等。
+字符串类型在Redis中是二进制存储的，这意味着可以接受任何格式的数据，如JPEG图像数据或Json对象描述信息等。
 
 在Redis中字符串类型的Value最多可以容纳的数据长度是512M
 
@@ -24,7 +24,7 @@ redis是一种key-value的nosql数据库
 - get key
 
     获取key的value。
-    
+
     + 如果与该key关联的value不是String类型，redis将返回错误信息，因为get命令只能用于获取String value；
     + 如果该key不存在，返回null。
 
@@ -35,27 +35,28 @@ redis是一种key-value的nosql数据库
 - incr key
 
     将指定的key的value**原子性**的递增1。
-    
+
     + 如果该key不存在，其初始值为0，在incr之后其值为1。
     + 如果value的值不能转成整型，如hello，该操作将执行失败并返回相应的错误信息。
 
 - decr key
 
     将指定的key的value**原子性**的递减1。
-    
+
     + 如果该key不存在，其初始值为0，在incr之后其值为-1。
     + 如果value的值不能转成整型，如hello，该操作将执行失败并返回相应的错误信息。
 
 - incrby key increment
 
-    将指定的key的value原子性增加increment（指定值）
+    将指定的key的value**原子性**增加increment（指定值）
+
     + 如果该key不存在，其初始值为0，在incrby之后，该值为increment。
     + 如果该值不能转成整型，如hello，则失败并返回错误信息。
 
 - decrby key decrement
 
-    将指定的key的value原子性减少decrement
-    
+    将指定的key的value**原子性**减少decrement
+
     + 如果该key不存在，其初始值为0，在decrby之后，该值为decrement。
     + 如果该值不能转成整型，如hello，则失败并返回错误信息。
 
@@ -114,6 +115,7 @@ redis是一种key-value的nosql数据库
 - lrem key count value
 
     删除count个值为value的元素
+
     + 如果count大于0，从头向尾遍历并删除count个值为value的元素
     + 如果count小于0，则从尾向头遍历并删除。
     + 如果count等于0，则删除链表中所有等于value的元素。
@@ -161,6 +163,7 @@ redis是一种key-value的nosql数据库
     将key1、key2相差的成员（key1有，key2没有）存储在destination上
 
 - sinter key[key1,key2…]
+
     返回交集
 
 - sinterstore destination key1 key2
@@ -168,6 +171,7 @@ redis是一种key-value的nosql数据库
     将返回的交集存储在destination上
 
 - sunion key1、key2
+
     返回并集。
 
 - sunionstore destination key1 key2

@@ -8,8 +8,6 @@ brew install redis
 
 ## Linux中安装
 
-> 注意：以下步骤是从其他地方拷过来的，待验证
-
 1. 安装redis编译的c环境，yum install gcc-c++
 2. 将redis-2.6.16.tar.gz上传到Linux系统中
 3. 解压到/usr/local下 `tar -xvf redis-2.6.16.tar.gz -C /usr/local`
