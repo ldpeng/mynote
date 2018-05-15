@@ -31,7 +31,7 @@
 # 启动交互式容器
 
 ```shell
-docker run -i -t IMAGE /bin/bash
+docker run -it IMAGE /bin/bash
 ```
 
 - -i 相当于--interactive=true|false 默认是false 是否永久活跃
@@ -41,7 +41,7 @@ docker run -i -t IMAGE /bin/bash
 如：
 
 ```shell
-docker run -i -t ubuntu /bin/bash
+docker run -it ubuntu /bin/bash
 ```
 
 此命令会先创建一个容器，再进入其交互式模式中
