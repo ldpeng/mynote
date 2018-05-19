@@ -137,8 +137,14 @@
 
 ## 构建缓存
 
-构建镜像的过程，docker会缓存起来。如果后面再次构建相同的镜像会直接使用缓存，提高构建效率。如果不行使用构建缓存，可以在构建命令中指定：`docker build dockerfilename --no-cache`。
+构建镜像的过程，docker会缓存起来。如果后面再次构建相同的镜像会直接使用缓存，提高构建效率。如果不行使用构建缓存，可以在构建命令中指定：`docker build -t dockerfilename --no-cache`。
 
 ## 构建过程查看
 
 通过`docker history 镜像名`命令，可以查看镜像的构建过程
+
+# 导入导出镜像
+
+导出镜像： docker save 镜像 > /root/xx.tar.gz
+
+导入镜像： docker load < /root/xx.tar.gz

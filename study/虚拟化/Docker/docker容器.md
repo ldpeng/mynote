@@ -17,9 +17,11 @@
   - 不传参数则列出正在运行的容器
 7. 启动容器 `docker start 容器id`
 8. 删除一个容器 `docker rm 容器id`
+  - 删除所有容器 `docker rm -f $(docker ps -a -p)`
 9. 启动一个做了端口映射的tomcat `docker run -d -p 8888:8080 tomcat`
   - -d: 后台运行
   - -p: 将主机的端口映射到容器的一个端口(主机端口:容器内部的端口)
+  - 通过 -e 可以传递环境变量
 10. 查看容器的日志 `docker logs [-f][-t] [--tail] container-name/container-id`
   - -f 一直跟踪并返回结果：--follows=true|false 默认为false
   - -t 在返回结果中加上时间戳：--timestamps=true|false 默认为false
@@ -66,9 +68,11 @@ docker run -it ubuntu /bin/bash
   ```shell
   docker exec [-d] [-i] [-t] 容器ID或容器名 [COMMAND][ARG...]
   ```
+  `exec`也可以进入交互式模式
+
 # 端口映射
 
 通过run命令启动时，可以指定主机与容器的端口映射
 
 - -P 表示映射全部端口。--publish-all=true|false 默认为false
-- -p 指定哪些容器端口。 --publish=【】
+- -p 指定哪些容器端口。 --publish=[]

@@ -1,5 +1,7 @@
 # docker0
 
+**早期的版本**
+
 docker安装后，运行docker容器的主机会多了个名为docker0的虚拟网桥
 
 网桥属于数据链路层：
@@ -79,7 +81,7 @@ ip-forward本身是Linux的一个变量，它的值决定系统是否会转发�
 
 iptables是Linux内核集成的包过滤防火墙系统，几乎所有的Linux发行版都会有iptables的功能
 
-linux是通过iptables来控制对容器的访问
+iptable性能比较低，它是按照所配置的规则的顺序进行遍历去匹配，如果规则很多，无用功就会越多
 
 # 跨主机链接
 
