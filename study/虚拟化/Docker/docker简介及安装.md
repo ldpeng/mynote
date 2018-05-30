@@ -38,15 +38,15 @@ Docker从1.13版本之后采用时间线的方式作为版本号，分为社区�
 步骤：
 
 1. 检查内核版本 `uname -r`，必须是3.10及以上
-  - 如果版本过低则需要升级 `yum update`
+    - 如果版本过低则需要升级 `yum update`
 2. 卸载旧版本(如果安装过旧版本的话) `yum remove docker  docker-common docker-selinux docker-engine`
 3. 安装需要的软件包, yum-util提供yum-config-manager功能,另外两个是devicemapper驱动依赖的 `yum install -y yum-utils device-mapper-persistent-data lvm2`
 4. 设置yum源 `yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo`
 5. 可以查看所有仓库中所有docker版本，并选择特定版本安装 `yum list docker-ce --showduplicates | sort -r`
 6. 安装docker `yum install docker-ce`，并输入y确认安装
-3. 启动docker `systemctl start docker`
+7. 启动docker `systemctl start docker`
   - 可以设置为开机启动docker `systemctl enable docker`
-4. 停止docker `systemctl stop docker`
+8. 停止docker `systemctl stop docker`
 
 ## Mac中安装
 
