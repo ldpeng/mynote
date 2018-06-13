@@ -40,7 +40,7 @@ CSS3选择器与jQuery中所提供的绝大部分选择器兼容。
 
 ## 通过attr取值
 
-```
+```html
 span::before, span::after{
     content: attr(data-text);
 }
@@ -83,11 +83,11 @@ span::before, span::after{
 2. 垂直偏移量 正值向下 负值向上；
 3. 模糊度是不能为负值；
 
-```
+```CSS
 text-shadow: 15px 15px 20px red;
 ```
 
-```
+```CSS
 text-shadow: -3px -3px 5px #000, 6px 6px 5px red;
 ```
 
@@ -111,11 +111,11 @@ text-shadow: -3px -3px 5px #000, 6px 6px 5px red;
 - 设置边框阴影不会改变盒子的大小，即不会影响其兄弟元素的布局。
 - 可以设置多重边框阴影，实现更好的效果，增强立体感。
 
-```
+```CSS
 box-shadow: -2px -2px 2px #ccc inset;
 ```
 
-```
+```CSS
 box-shadow: 20px 20px 10px #ccc, 50px 60px 80px red;
 ```
 
@@ -138,14 +138,14 @@ box-shadow: 20px 20px 10px #ccc, 50px 60px 80px red;
     - round: 会自动调整尺寸，完整显示边框图片
     - stretch: 拉伸
 
-```
+```CSS
 border-image-source: url(/images/border.png);
 order-image-width: 15px;
 border-image-slice: 27 27 27 27;
 border-image-repeat: round;
 ```
 
-```
+```CSS
 border-image: url("images/border.png") 27/20px round
 ```
 
@@ -190,22 +190,19 @@ CSS3中可以通过**box-sizing**来指定盒模型
     - 终止色
 
 如：
-```
+```CSS
 background-image: linear-gradient(to right, yellow, green);
 ```
 
-
-```
+```CSS
 background-image: linear-gradient(45deg, yellow, green);
 ```
 
-
-```
+```CSS
 background-image:linear-gradient(to right, yellow 25%, green 50%, blue 75%);
 ```
 
-
-```
+```CSS
 background-image: linear-gradient(to right, yellow 25%, green 25%, green 50%, blue 50%, blue 75%, red 75%, red 100%);
 ```
 
@@ -227,19 +224,19 @@ background-image: linear-gradient(to right, yellow 25%, green 25%, green 50%, bl
 
 如：
 
-```
+```CSS
 background-image: radial-gradient(120px 180px at center, yellow, green);
 ```
 
-```
+```CSS
 background-image: radial-gradient(120px at right top, yellow, green);
 ```
 
-```
+```CSS
 background-image: radial-gradient(120px at 300px 150px , yellow, green);
 ```
 
-```
+```CSS
 background-image: radial-gradient(200px at 160px 160px, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6));
 ```
 
@@ -259,15 +256,15 @@ background-image: radial-gradient(200px at 160px 160px, rgba(0, 0, 0, 0), rgba(0
 - transition-delay设置过渡延时
 
 如：
-```
+```CSS
 transition: width 2s;
 ```
 
-```
+```CSS
 transition: all 1s linear;
 ```
 
-```
+```CSS
 transition: all 0.3s ease 0s;
 ```
 
@@ -279,17 +276,17 @@ transition: all 0.3s ease 0s;
     - 移动位置相对于自身原来位置
     - y轴正方向朝下
     - 除了可以是像素值，也可以是百分比，相对于自身的宽度或高度
-```
+```CSS
 transform: translate(400px, 300px);
 ```
 
-```
+```CSS
 transform:translate(-50%,-50%);
 ```
 
 - 缩放：scale(x, y) 可以对元素进行水平和垂直方向的缩放，x、y的取值可为小数；
 
-```
+```CSS
 transform: scale(0.75, 1.5);
 ```
 
@@ -297,26 +294,26 @@ transform: scale(0.75, 1.5);
     - 通过transform-origin指定旋转原点（默认是中心）
     - 当元素旋转以后，坐标轴也跟着发生的转变
 
-```
+```CSS
 transform: rotate(-45deg);
 transform-origin: left top;
 ```
 
 - 倾斜：skew(deg, deg) 可以使元素按一定的角度进行倾斜，可为负值，第二个参数不写默认为0
 
-```
+```CSS
 transform: skew(45deg, 0deg);
 ```
 
 多个属性同时设置用空格隔开，其顺序会影响转换的效果
 
-```
+```CSS
 transform: translate(50px, 50px) rotate(360deg) scale(0.75);
 ```
 
 ## 任意元素居中
 
-```
+```CSS
 position: fixed;
 left: 50%;
 top: 50%;
@@ -337,7 +334,7 @@ CSS3中的3D坐标系与上述的3D坐标系是有一定区别的，相当于其
 
 rotateX、rotateY、rotateZ分别指定X、Y、Z轴的旋转，旋转方向是面对坐标轴正方向，正数为顺时针，负数为逆时针。
 
-```
+```CSS
 transform:rotateX(360deg) rotateY(360deg) rotateZ(360deg);
 ```
 
@@ -345,7 +342,7 @@ transform:rotateX(360deg) rotateY(360deg) rotateZ(360deg);
 
 translateX、translateY、translateZ分别指定X、Y、Z轴的移动
 
-```
+```CSS
 transform:translateX(300px) translateY(300px) translateZ(300px);
 ```
 
@@ -357,7 +354,7 @@ transform:translateX(300px) translateY(300px) translateZ(300px);
 
 **注：并非任何情况下需要透视效果，根据开发需要进行设置。**
 
-```
+```CSS
 perspective: 400px;
 ```
 
@@ -385,7 +382,7 @@ perspective有两种写法
 
 设置元素背面是否可见
 
-```
+```CSS
 backface-visibility: hidden;
 ```
 
@@ -408,7 +405,7 @@ backface-visibility: hidden;
 - animation-iteration-count动画执行次数，infinite等
 - steps(60) 表示动画分成60步完成
 
-```
+```CSS
 .box{
     /* 调用*/
     animation: gun 4s;
@@ -443,7 +440,7 @@ backface-visibility: hidden;
 }
 ```
 
-```
+```CSS
 .box{
     /* 调用*/
     /* infinite:无限次*/
@@ -462,7 +459,7 @@ backface-visibility: hidden;
 }
 ```
 
-```
+```CSS
 .box{
     /*animation: move 2s 3  alternate linear;*/
 
@@ -481,7 +478,7 @@ backface-visibility: hidden;
     /* 动画延迟执行*/
     /*animation-delay: 1s;*/
 
-    /* 设置动画结束盒子盒子的状态
+    /* 设置动画结束盒子的状态
         forwards：保持动画结束后的状态
         backwards：保持动画开始前的状态*/
     animation-fill-mode:forwards;
@@ -501,7 +498,7 @@ backface-visibility: hidden;
 }
 ```
 
-[腾讯动画库](http://isux.tencent.com/css3/tools.html)
+[腾讯动画库](http://css3lib.alloyteam.com)
 
 # 伸缩布局
 
@@ -529,7 +526,7 @@ backface-visibility: hidden;
 
 类似报纸或杂志中的排版方式，上要用以控制大篇幅文本。
 
-```
+```CSS
 /* 分几列*/
 -webkit-column-count:3;
 /* 分割线*/
