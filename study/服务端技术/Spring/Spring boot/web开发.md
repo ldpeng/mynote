@@ -519,3 +519,86 @@ public WebMvcConfigurerAdapter webMvcConfigurerAdapter(){
   return adapter;
 }
 ```
+
+# 后台数据校验
+
+使用hibernate-validator工具包进行校验（spring-boot-starter-web中已包含）
+
+```xml
+<dependency>
+	<groupId>org.hibernate</groupId>
+	<artifactId>hibernate-validator</artifactId>
+</dependency>
+```
+
+通过注解定义验证规则
+```java
+@Data
+public class StandardDto {
+
+    private Integer standardId;
+
+    @NotBlank(message = "{standard.name.notBlank}")
+    private String standardName;
+
+    private Integer orderId;
+
+    private Date operateTime;
+}
+```
+
+controller中标记为验证
+```java
+@PostMapping("/standard")
+public ResponseEntity saveStandard(@Validated StandardDto standard) {
+}
+```
+
+## 验证提示信息
+
+默认情况下，可以在resources目录下创建国际化文件，来定义错误提示信息，文件名默认为：ValidationMessages.properties、ValidationMessages_zh_CN.properties 等
+
+```properties
+standard.name.notBlank=规格名称不能为空
+```
+
+也可以自定义路径：
+```java
+@Configuration
+public class ValidatorConfiguration {
+
+    public ResourceBundleMessageSource getMessageSource() {
+        ResourceBundleMessageSource rbms = new ResourceBundleMessageSource();
+        rbms.setDefaultEncoding("UTF-8");//文件编码方式
+        //修改验证信息配置文件路径。默认是resources/ValidationMessages[_zh_CN].properties
+        rbms.setBasenames("i18n/validator/message");
+        return rbms;
+    }
+
+    @Bean
+    public Validator getValidator() throws Exception {
+        LocalValidatorFactoryBean validator = new LocalValidatorFactoryBean();
+        validator.setValidationMessageSource(getMessageSource());
+        return validator;
+    }
+}
+```
+
+对于错误信息，可以进行统一处理，如：
+```java
+@ControllerAdvice
+public class MyExceptionHandler {
+
+    @ExceptionHandler(BindException.class)
+    public ResponseEntity handleException(BindException e) {
+        List<ObjectError> errors =  e.getAllErrors();
+        Map<String, Object> map = new HashMap<>(1);
+        List<String> msg = new ArrayList<>(errors.size());
+        map.put("errorMsg", msg);
+
+        errors.stream().forEach(x -> msg.add(x.getDefaultMessage()));
+
+        return new ResponseEntity(map, HttpStatus.BAD_REQUEST);
+    }
+}
+```
