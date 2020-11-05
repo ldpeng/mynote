@@ -17,6 +17,7 @@
   - 不传参数则列出正在运行的容器
 7. 启动容器 `docker start 容器id`
 8. 删除一个容器 `docker rm 容器id`
+
   - 删除所有容器 `docker rm -f $(docker ps -a -p)`
 9. 启动一个做了端口映射的tomcat `docker run -d -p 8888:8080 tomcat`
   - -d: 后台运行
@@ -54,7 +55,7 @@ docker run -it ubuntu /bin/bash
 
 - 容器详细信息
   ```shell
-  docker inspect 容器ID或容器名称
+  docker inspect 容器ID或容器名称
   ```
 - 进入一个守护式运行的容器的交互式模式
   ```shell
@@ -76,3 +77,4 @@ docker run -it ubuntu /bin/bash
 
 - -P 表示映射全部端口。--publish-all=true|false 默认为false
 - -p 指定哪些容器端口。 --publish=[]
+

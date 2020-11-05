@@ -58,6 +58,13 @@ nvm use 版本号
 nvm use 版本号 32	32的操作系统使用这种方式切换node版本
 ```
 
+- 切换默认版本
+
+```
+nvm alias default version_name
+nvm alias default v9.3.0
+```
+
 - 安装Node版本
 
 ```
